@@ -45,8 +45,8 @@ Protocol 2
 StrictModes yes
 
 # Logging, obsoletes QuietMode and FascistLogging
-SyslogFacility AUTH
-LogLevel VERBOSE
+SyslogFacility {{ssh_syslog_facility}}
+LogLevel {{ssh_syslog_level}}
 
 # Cryptography
 # ------------
@@ -92,7 +92,7 @@ UsePrivilegeSeparation {% if (ansible_distribution == 'Debian' and ansible_distr
 
 LoginGraceTime 30s
 MaxAuthTries {{ssh_max_auth_retries}}
-MaxSessions 10
+MaxSessions {{ssh_max_sessions}}
 MaxStartups {{ssh_max_startups}}
 
 # Enable public key authentication
@@ -136,11 +136,15 @@ GSSAPICleanupCredentials yes
 
 # In case you don't use PAM (`UsePAM no`), you can alternatively restrict users and groups here. For key-based authentication this is not necessary, since all keys must be explicitely enabled.
 {% if ssh_deny_users -%}
-DenyUsers {{ssh_deny_users}}
+{% for item in ssh_deny_users -%}
+DenyUsers {{item}}
+{% endfor %}
 {% endif %}
 
 {% if ssh_allow_users -%}
-AllowUsers {{ssh_allow_users}}
+{% for item in ssh_allow_users -%}
+AllowUsers {{item}}
+{% endfor %}
 {% endif %}
 
 {% if ssh_deny_groups -%}

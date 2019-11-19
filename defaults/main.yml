@@ -36,6 +36,9 @@ ssh_host_key_files: [] # sshd
 # Specifies  the  maximum  number  of authentication attempts permitted per connection.  Once the number of failures reaches half this value, additional failures are logged.
 ssh_max_auth_retries: 2
 
+# Specifies the maximum of concurrent sessions for a user
+ssh_max_sessions: 10
+
 ssh_client_alive_interval: 300 # sshd
 ssh_client_alive_count: 3 # sshd
 
@@ -217,6 +220,9 @@ ssh_custom_selinux_dir: '/etc/selinux/local-policies'
 
 sshd_moduli_file: '/etc/ssh/moduli'
 sshd_moduli_minimum: 2048
+
+ssh_syslog_facility: AUTH
+ssh_syslog_level: INFO
 
 # disable ChallengeResponseAuthentication
 ssh_challengeresponseauthentication: false

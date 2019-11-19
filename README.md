@@ -108,6 +108,14 @@ Specifies the maximum number of authentication attempts permitted per connection
 ssh_max_auth_retries: 2
 ```
 
+### ssh_max_sessions
+
+Specifies the maximum number of concurrent sessions for a user
+
+```yml
+ssh_max_sessions: 2
+```
+
 ### ssh_client_alive_interval
 
 ```yml
@@ -561,6 +569,23 @@ disable ChallengeResponseAuthentication
 ```yml
 ssh_challengeresponseauthentication: false
 ```
+
+### ssh_syslog_facility
+
+define syslog facility
+
+```yml
+ssh_syslog_facility: AUTH
+```
+
+### ssh_syslog_level
+
+define syslog level
+
+```yml
+ssh_syslog_level: VERBOSE
+```
+
 
 ### ssh_server_revoked_keys
 
