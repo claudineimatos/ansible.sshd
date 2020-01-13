@@ -236,6 +236,12 @@ DebianBanner {{ 'yes' if (ssh_print_debian_banner|bool) else 'no' }}
 # Reject keys that are explicitly blacklisted
 RevokedKeys /etc/ssh/revoked_keys
 
+# Allow AuthorizedKeys Command
+{% if (sshd_use_sssd_auth|bool) %}
+AuthorizedKeysCommand {{ sshd_sss_command }} 
+AuthorizedKeysCommandUser nobody
+{% endif %} 
+
 {% if ssh_sftp_enabled -%}
 # SFTP matching configuration
 # ===========================
@@ -293,8 +299,3 @@ Match User {{ item.user }}
   {% endfor %}
 {% endfor %}
 {% endif %}
-
-{% if (sshd_use_sssd_auth|bool) %}
-AuthorizedKeysCommand {{ sshd_sss_command }} 
-AuthorizedKeysCommandUser nobody
-{% endif %} 
