@@ -604,6 +604,23 @@ the Ansible role dependency mechanism.
 ssh_hardening_enabled: true
 ```
 
+
+### sshd_use_sssd_auth ###
+
+Allow SSH Key Authentication through SSSD. Se to true to enable
+
+```yml
+sshd_use_sssd_auth: false
+```
+
+### sshd_sss_command ###
+
+SSS AuthorizedKeys Command
+
+```yml
+sshd_sss_command: "/usr/bin/sss_ssh_authorizedkeys"
+```
+
 ### ssh_custom_options
 
 Custom options for SSH client configuration file

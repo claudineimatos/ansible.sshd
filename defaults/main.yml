@@ -239,3 +239,8 @@ ssh_custom_options: []
 
 # Custom options for SSH daemon configuration file
 sshd_custom_options: []
+
+# Allow SSH Key Authentication through SSSD
+sshd_use_sssd_auth: false
+sshd_sss_command: "/usr/bin/sss_ssh_authorizedkeys"
+

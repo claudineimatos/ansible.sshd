@@ -293,3 +293,8 @@ Match User {{ item.user }}
   {% endfor %}
 {% endfor %}
 {% endif %}
+
+{% if (sshd_use_sssd_auth|bool) %}
+AuthorizedKeysCommand {{ sshd_sss_command }} 
+AuthorizedKeysCommandUser nobody
+{% endif %} 
